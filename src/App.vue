@@ -1,14 +1,15 @@
 <template>
   <v-app>
-    <CustomAppBar/>
+    <CustomNavBar/>
     <v-main>
+      <router-view/>
     </v-main>
     <CustomFooter/>
   </v-app>
 </template>
 
 <script>
-import CustomAppBar from './components/CustomAppBar.vue';
+import CustomNavBar from './components/CustomNavBar.vue';
 import CustomFooter from './components/CustomFooter.vue';
 
 export default {
@@ -18,7 +19,7 @@ export default {
     //
   }),
   components: {
-    CustomAppBar,
+    CustomNavBar,
     CustomFooter,
   },
 };
