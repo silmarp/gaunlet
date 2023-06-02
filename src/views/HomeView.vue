@@ -1,27 +1,27 @@
 <template>
   <div>
     <div>
-      <v-btn @click="loadDefesas()">
-        teste
-      </v-btn>
+      <v-btn @click=" loadDefesas()">Carregar defesas</v-btn>
     </div>
     <v-table
-    fixed-header
-    height="500px">
+    v-show="load"
+    >
       <thead>
         <tr>
-          <th>
-            teste1
-          </th>
-          <th>
-            teste2
-          </th>
+          <th class="text-center">Ordem</th>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Curso</th>
+          <th class="text-center">Programa</th>
+          <th class="text-center">Data</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="a in alunos" :key="a.Ordem">
-          <td>{{ a.Nome }}</td>
-          <td>{{ a.Data }}</td>
+          <td class="text-center">{{ a.Ordem }}</td>
+          <td class="text-center">{{ a.Nome }}</td>
+          <td class="text-center">{{ a.Curso }}</td>
+          <td class="text-center">{{ a.Programa }}</td>
+          <td class="text-center">{{ a.Data }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -34,16 +34,16 @@ export default {
   data() {
     return {
       alunos: undefined,
+      load: false,
     };
   },
   methods: {
-    loadDefesas() {
+    async loadDefesas() {
       const url = 'http://thanos.icmc.usp.br:4567/api/v1/defesas';
-      fetch(url)
-        .then((data) => (data.json()))
-        .then((response) => {
-          this.alunos = response;
-        });
+      const response = await fetch(url);
+      this.alunos = await response.json();
+      this.alunos = this.alunos.items;
+      this.load = true;
     },
   },
 };
