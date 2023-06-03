@@ -1,30 +1,34 @@
 <template>
   <div>
-    <div>
-      <v-btn @click=" loadDefesas()">Carregar defesas</v-btn>
-    </div>
-    <v-table
-    v-show="load"
-    >
-      <thead>
-        <tr>
-          <th class="text-center">Ordem</th>
-          <th class="text-center">Nome</th>
-          <th class="text-center">Curso</th>
-          <th class="text-center">Programa</th>
-          <th class="text-center">Data</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="a in alunos" :key="a.Ordem">
-          <td class="text-center">{{ a.Ordem }}</td>
-          <td class="text-center">{{ a.Nome }}</td>
-          <td class="text-center">{{ a.Curso }}</td>
-          <td class="text-center">{{ a.Programa }}</td>
-          <td class="text-center">{{ a.Data }}</td>
-        </tr>
-      </tbody>
-    </v-table>
+    <v-btn @click=" loadDefesas()">Carregar defesas</v-btn>
+    <v-card v-show="load">
+      <v-card-title>
+        Defesas
+        <v-spacer/>
+        <v-overflow-btn
+        dense
+        :items="headers"
+        label="Buscar por"
+        v-model="busca"
+        />
+        <v-spacer/>
+        <v-text-field
+          v-model="filter"
+          :label= buscarPor
+          single-line
+        />
+        <v-spacer/>
+      </v-card-title>
+      <v-data-table
+      dense
+      :headers="headers"
+      :items="alunos"
+      :items-per-page="15"
+      :search="filter"
+      multi-sort
+      >
+      </v-data-table>
+    </v-card>
   </div>
 </template>
 
@@ -35,6 +39,25 @@ export default {
     return {
       alunos: undefined,
       load: false,
+      filter: '',
+      busca: '',
+      headers: [
+        {
+          text: 'Ordem', value: 'Ordem', filterable: true,
+        },
+        {
+          text: 'Nome', value: 'Nome', filterable: true,
+        },
+        {
+          text: 'Curso', value: 'Curso', filterable: true,
+        },
+        {
+          text: 'Progama', value: 'Programa', filterable: true,
+        },
+        {
+          text: 'Data', value: 'Data', filterable: true,
+        },
+      ],
     };
   },
   methods: {
@@ -44,6 +67,26 @@ export default {
       this.alunos = await response.json();
       this.alunos = this.alunos.items;
       this.load = true;
+    },
+    updateHeadersFilter() {
+      /* CORRIGIR
+      a função funciona corretamente até selecionar a busca por programa,
+      é a única opção que a busca não funciona (não sei o motivo)
+      quando nenhuma opção é selecionada, a busca por
+      programa funciona corretamente
+      */
+      this.headers.forEach((e) => {
+        e.filterable = false;
+        if (e.text.match(this.busca)) {
+          e.filterable = true;
+        }
+      });
+    },
+  },
+  computed: {
+    buscarPor() {
+      this.updateHeadersFilter();
+      return `Buscar por ${this.busca}`;
     },
   },
 };
