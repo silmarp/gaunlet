@@ -1,6 +1,5 @@
 <template>
   <div>
-    <v-btn @click=" loadDefesas()">Carregar defesas</v-btn>
     <v-card v-show="load">
       <v-card-title>
         Defesas
@@ -88,6 +87,9 @@ export default {
       this.updateHeadersFilter();
       return `Buscar por ${this.busca}`;
     },
+  },
+  beforeMount() {
+    this.loadDefesas();
   },
 };
 </script>
