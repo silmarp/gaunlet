@@ -66,6 +66,14 @@ export default {
       this.alunos = await response.json();
       this.alunos = this.alunos.items;
       this.load = true;
+      this.alunos.forEach((e) => {
+        // dd/mm/aaaa -> [dd, mm, aaaa]
+        // subtrair 1 do mês, pois js conta o mês Jan como 0, Fev como 1, etc
+        // exemplo: 10/02/2022 -> [10, 02, 2022] -> new Date(2022, 02 - 1, 10)
+        // se der tempo tentar tirar o tempo do Date
+        const data = e.Data.split('/');
+        e.Data = new Date(data[2], data[1] - 1, data[0]);
+      });
     },
     updateHeadersFilter() {
       /* CORRIGIR
