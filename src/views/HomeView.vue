@@ -29,9 +29,9 @@
         <template v-slot:item="{ item }">
             <tr>
               <td>{{item.Ordem}}</td>
+              <td>{{item.Nome}}</td>
               <td>{{item.Curso}}</td>
               <td>{{item.Programa}}</td>
-              <td>{{item.Nome}}</td>
               <td>{{item.Data}}</td>
               <td>
                   <DefenceDialog
