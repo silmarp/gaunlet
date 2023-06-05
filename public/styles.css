@@ -1,0 +1,15 @@
+#footer{
+   background-color: #0D4990;
+}
+#footer-left-card{
+   background-color: #0D4990;
+}
+.mdi-github::before {
+   color:white
+}
+.mdi-github:hover::before {
+   color:cyan
+}
+#footer-lef-card-text{
+   color:white
+}
