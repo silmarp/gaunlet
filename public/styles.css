@@ -10,6 +10,36 @@
    color: white;
 }
 
+/* mid content: */
+
+/* inside content: */
+.v-dialog > .v-card > .v-card__subtitle{ 
+   -webkit-text-stroke: medium;
+}
+/* view buttons: */
+
+.v-btn__content{
+   color: white;
+}
+
+.v-btn{
+   background-color: #0D4990 !important;
+   color: white !important;
+}
+/* view icons: */
+.v-btn:not(.v-btn--round).v-size--default{
+   background-color: #0D4990 !important;
+   color: white;
+}
+
+/* git icons: */
+.v-icon.v-icon{
+   color: #0D4990;
+}
+
+.mdi-github:hover::before {
+   color:  rgb(16, 109, 82);
+}
 
 /* footer */
 #footer{
@@ -18,11 +48,13 @@
 #footer-left-card{
    background-color: #0D4990;
 }
-.mdi-github::before {
-   color:white
+
+.footer-div  .mdi-github:hover::before {
+   color: rgb(0, 255, 183);
 }
-.mdi-github:hover::before {
-   color:cyan
+
+.footer-div .v-icon.v-icon{
+   color: white;
 }
 #footer-lef-card-text{
    color:white
