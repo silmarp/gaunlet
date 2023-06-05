@@ -24,3 +24,7 @@ export default {
   },
 };
 </script>
+
+<style>
+@import '../public/styles.css';
+</style>

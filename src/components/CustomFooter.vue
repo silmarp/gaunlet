@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <v-footer id ="footer"
+    <div class = "footer-div">
+        <v-footer class ="footer" id ="footer"
         >
             <v-card id= "footer-left-card"
             flat
@@ -20,15 +20,3 @@ export default {
 };
 </script>
 <!-- tentando colocar estilo ??? -->
-<style>
-#footer {
-  background-color: #0D4990;
-}
-#footer-left-card{
-    background-color: #0D4990;
-    color: white;
-}
-#footer-lef-card-text{
-    color: white;
-}
-</style>
