@@ -26,12 +26,32 @@
       :search="filter"
       multi-sort
       >
+        <template v-slot:item="{ item }">
+            <tr>
+              <td>{{item.Ordem}}</td>
+              <td>{{item.Curso}}</td>
+              <td>{{item.Programa}}</td>
+              <td>{{item.Nome}}</td>
+              <td>{{item.Data}}</td>
+              <td>
+                  <DefenceDialog
+                    :aluno="item.Nome"
+                    :curso="item.Curso"
+                    :programa="item.Programa"
+                    :data="item.Data"
+                    :orientador="item.Orientador"
+                  />
+              </td>
+            </tr>
+        </template>
       </v-data-table>
     </v-card>
   </div>
 </template>
 
 <script>
+import DefenceDialog from '../components/DefenceDialog.vue';
+
 export default {
   name: 'HomeView',
   data() {
@@ -56,8 +76,14 @@ export default {
         {
           text: 'Data', value: 'Data', filterable: true,
         },
+        {
+          text: 'Visualização', value: 'Visualização', filterable: false,
+        },
       ],
     };
+  },
+  components: {
+    DefenceDialog,
   },
   methods: {
     async loadDefesas() {
