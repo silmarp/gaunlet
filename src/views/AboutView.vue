@@ -14,9 +14,11 @@
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title>
+        <v-hover v-slot="{ hover }">
           <v-list-item-icon>
-            <a href="https://github.com/HeitorPupim"><v-icon large>mdi-github</v-icon></a>
+            <a href="https://github.com/HeitorPupim"><v-icon large :color="hover ? 'blue': 'gray'">mdi-github</v-icon></a>
           </v-list-item-icon>
+        </v-hover>
           Heitor Pupim
         </v-list-item-title>
         <v-list-item-subtitle>{Nusp}</v-list-item-subtitle>
@@ -26,9 +28,11 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title>
+        <v-hover v-slot="{ hover }">
           <v-list-item-icon>
-            <a href="https://github.com/RafaelJunDantas"><v-icon large>mdi-github</v-icon></a>
+            <a href="https://github.com/RafaelJunDantas"><v-icon large :color="hover ? 'blue': 'gray'">mdi-github</v-icon></a>
           </v-list-item-icon>
+        </v-hover>
           Rafael Jun
         </v-list-item-title>
         <v-list-item-subtitle>{Nusp}</v-list-item-subtitle>
@@ -38,9 +42,9 @@
     <v-list-item three-line>
       <v-list-item-content>
         <v-list-item-title>
-        <v-hover>
+        <v-hover v-slot="{ hover }">
           <v-list-item-icon>
-            <a href="https://github.com/silmarp"><v-icon large>mdi-github</v-icon></a>
+            <a href="https://github.com/silmarp"><v-icon large :color="hover ? 'blue': 'gray'">mdi-github</v-icon></a>
           </v-list-item-icon>
         </v-hover>
           Silmar Pereira da Silva Junior
