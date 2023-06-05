@@ -13,7 +13,9 @@
 /* mid content: */
 
 /* inside content: */
-
+.v-dialog > .v-card > .v-card__subtitle{ 
+   font-weight: bold;
+}
 /* view buttons: */
 
 .v-btn__content{
