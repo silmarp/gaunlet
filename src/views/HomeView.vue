@@ -51,7 +51,7 @@ export default {
           text: 'Curso', value: 'Curso', filterable: true,
         },
         {
-          text: 'Progama', value: 'Programa', filterable: true,
+          text: 'Programa', value: 'Programa', filterable: true,
         },
         {
           text: 'Data', value: 'Data', filterable: true,
