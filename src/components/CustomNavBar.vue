@@ -3,7 +3,7 @@
         <v-app-bar>
           <router-link to="/">
               <img
-               src="../assets/icmc_logo.png"
+               src="../assets/LOGO50A NEG.png"
                alt="ICMC logo"
                width="100"
                height="50"
@@ -22,8 +22,6 @@
 </template>
 
 <style>
-.v-tabs-bar {
-}
 .v-tab {
     text-transform: none !important;
 }

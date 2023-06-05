@@ -1,3 +1,17 @@
+/* navbar/header */
+.v-toolbar__content{
+   background-color: #0D4990;
+}
+
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active), .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon, .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-btn, .theme--light.v-tabs > .v-tabs-bar .v-tab--disabled{
+   color: rgba(255, 255, 255, 0.492);
+}
+.v-tabs-slider,.v-tab--active.v-tab{
+   color: white;
+}
+
+
+/* footer */
 #footer{
    background-color: #0D4990;
 }
