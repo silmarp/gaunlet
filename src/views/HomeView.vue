@@ -4,9 +4,21 @@
       <v-card-title>
         Defesas
         <v-spacer/>
+        <v-radio-group label="Filtrar por Programa" v-model="programa">
+          <span v-for="p in programaHeaders" :key="p.key">
+            <v-radio :label=p.label :value=p.key></v-radio>
+          </span>
+        </v-radio-group>
+        <v-spacer/>
+        <v-radio-group label="Filtrar por Curso" v-model="curso">
+          <span v-for="c in cursoHeaders" :key="c.key">
+            <v-radio :label=c.label :value=c.key></v-radio>
+          </span>
+        </v-radio-group>
+        <v-spacer/>
         <v-overflow-btn
         dense
-        :items="headers"
+        :items="filterHeaders"
         label="Buscar por"
         v-model="busca"
         />
@@ -59,22 +71,56 @@ export default {
       alunos: undefined,
       load: false,
       filter: '',
+      filterHeaders: ['', 'Ordem', 'Nome', 'Data'],
+      programa: '',
+      programaHeaders: [
+        {
+          label: 'Todos', key: '',
+        },
+        {
+          label: 'MAT', key: 'MAT',
+        },
+        {
+          label: 'CCMC', key: 'CCMC',
+        },
+        {
+          label: 'PROFMAT', key: 'PROFMAT',
+        },
+        {
+          label: 'PIPGEs', key: 'PIPGEs',
+        },
+      ],
+      curso: '',
+      cursoHeaders: [
+        {
+          label: 'Todos', key: '',
+        },
+        {
+          label: 'ME', key: 'ME',
+        },
+        {
+          label: 'DO', key: 'DO',
+        },
+        {
+          label: 'DD', key: 'DD',
+        },
+      ],
       busca: '',
       headers: [
         {
-          text: 'Ordem', value: 'Ordem', filterable: true,
+          text: 'Ordem', value: 'Ordem', filterable: false,
         },
         {
-          text: 'Nome', value: 'Nome', filterable: true,
+          text: 'Nome', value: 'Nome', filterable: false,
         },
         {
-          text: 'Curso', value: 'Curso', filterable: true,
+          text: 'Curso', value: 'Curso', filterable: false,
         },
         {
-          text: 'Programa', value: 'Programa', filterable: true,
+          text: 'Programa', value: 'Programa', filterable: false,
         },
         {
-          text: 'Data', value: 'Data', filterable: true,
+          text: 'Data', value: 'Data', filterable: false,
         },
         {
           text: 'Visualização', value: 'Visualização', filterable: false,
@@ -102,12 +148,6 @@ export default {
       });
     },
     updateHeadersFilter() {
-      /* CORRIGIR
-      a função funciona corretamente até selecionar a busca por programa,
-      é a única opção que a busca não funciona (não sei o motivo)
-      quando nenhuma opção é selecionada, a busca por
-      programa funciona corretamente
-      */
       this.headers.forEach((e) => {
         e.filterable = false;
         if (e.text.match(this.busca)) {
@@ -115,11 +155,17 @@ export default {
         }
       });
     },
+    updateCursoFiltera() {
+      this.alunos.filter((e) => (e.Curso.match(this.curso)));
+    },
   },
   computed: {
     buscarPor() {
       this.updateHeadersFilter();
       return `Buscar por ${this.busca}`;
+    },
+    updateCursoFilter() {
+      return this.alunos.filter((e) => (e.Curso.match(this.curso)));
     },
   },
   beforeMount() {
