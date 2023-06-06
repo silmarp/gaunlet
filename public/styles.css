@@ -11,6 +11,17 @@
 }
 
 /* mid content: */
+h1, p {
+   padding-left: 10px;
+   text-align: center;
+}
+
+.v-list-item{
+   font-weight: bold;
+}
+.v-list-item__subtitle{
+   color: black !important;
+}
 
 /* inside content: */
 .v-dialog > .v-card > .v-card__subtitle{ 

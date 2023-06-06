@@ -19,9 +19,9 @@
             <a href="https://github.com/HeitorPupim"><v-icon large :color="hover ? 'blue': 'gray'">mdi-github</v-icon></a>
           </v-list-item-icon>
         </v-hover>
-          Heitor Pupim
+          Heitor Pupim A. Toledo
         </v-list-item-title>
-        <v-list-item-subtitle>{Nusp}</v-list-item-subtitle>
+        <v-list-item-subtitle>11372858</v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
 
@@ -33,7 +33,7 @@
             <a href="https://github.com/RafaelJunDantas"><v-icon large :color="hover ? 'blue': 'gray'">mdi-github</v-icon></a>
           </v-list-item-icon>
         </v-hover>
-          Rafael Jun
+          Rafael Jun Teramae
         </v-list-item-title>
         <v-list-item-subtitle>{Nusp}</v-list-item-subtitle>
       </v-list-item-content>
