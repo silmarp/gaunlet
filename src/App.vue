@@ -1,3 +1,7 @@
+<style>
+@import '../public/styles.css';
+</style>
+
 <template>
   <v-app>
     <CustomNavBar/>
@@ -24,7 +28,3 @@ export default {
   },
 };
 </script>
-
-<style>
-@import '../public/styles.css';
-</style>
