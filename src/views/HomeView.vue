@@ -4,26 +4,77 @@
       <v-card-title>
         Defesas
         <v-spacer/>
-        <v-overflow-btn
-        dense
-        :items="headers"
-        label="Buscar por"
-        v-model="busca"
-        />
+
+        <v-radio-group v-model="course" :label="'Filtrar por curso'">
+            <v-radio
+                :label="'ALL'"
+                :value="'ALL'"
+                :key="'ALL'"
+            ></v-radio>
+            <v-radio
+                :label="'ME'"
+                :value="'ME'"
+                :key="'ME'"
+            ></v-radio>
+            <v-radio
+                :label="'DO'"
+                :value="'DO'"
+                :key="'DO'"
+            ></v-radio>
+            <v-radio
+                :label="'DD'"
+                :value="'DD'"
+                :key="'DD'"
+            ></v-radio>
+    </v-radio-group>
+
+        <v-spacer/>
+
+        <v-radio-group v-model="program" :label="'Filtrar por programa'">
+            <v-radio
+                :label="'ALL'"
+                :value="'ALL'"
+                :key="'ALL'"
+            ></v-radio>
+            <v-radio
+                :label="'MAT'"
+                :value="'MAT'"
+                :key="'MAT'"
+            ></v-radio>
+            <v-radio
+                :label="'CCMC'"
+                :value="'CCMC'"
+                :key="'CCMC'"
+            ></v-radio>
+            <v-radio
+                :label="'PIPGEs'"
+                :value="'PIPGEs'"
+                :key="'PIPGEs'"
+            ></v-radio>
+            <v-radio
+                :label="'PROFMAT'"
+                :value="'PROFMAT'"
+                :key="'PROFMAT'"
+            ></v-radio>
+    </v-radio-group>
+
         <v-spacer/>
         <v-text-field
-          v-model="filter"
-          :label= buscarPor
+          label="Busca por nome"
+          v-model="search"
           single-line
         />
         <v-spacer/>
       </v-card-title>
+      <!-- :search="filter" -->
       <v-data-table
       dense
       :headers="headers"
       :items="alunos"
+      :course="course"
+      :program="'MAT'"
+      :search="search"
       :items-per-page="15"
-      :search="filter"
       multi-sort
       >
         <template v-slot:item="{ item }">
@@ -58,8 +109,9 @@ export default {
     return {
       alunos: undefined,
       load: false,
-      filter: '',
-      busca: '',
+      course: 'ALL',
+      program: 'ALL',
+      search: '',
       headers: [
         {
           text: 'Ordem', value: 'Ordem', filterable: true,
@@ -68,10 +120,23 @@ export default {
           text: 'Nome', value: 'Nome', filterable: true,
         },
         {
-          text: 'Curso', value: 'Curso', filterable: true,
+          text: 'Curso',
+          value: 'Curso',
+          filterable: true,
+          filter: (value) => {
+            if (this.course === 'ALL') return true;
+            return value === this.course;
+          },
         },
         {
-          text: 'Programa', value: 'Programa', filterable: true,
+          text: 'Programa',
+          value: 'Programa',
+          filterable: true,
+          filter: (value) => {
+            if (this.program === 'ALL') return true;
+            return value === this.program;
+          },
+
         },
         {
           text: 'Data', value: 'Data', filterable: true,
@@ -101,26 +166,8 @@ export default {
         e.Data = new Date(data[2], data[1] - 1, data[0]);
       });
     },
-    updateHeadersFilter() {
-      /* CORRIGIR
-      a função funciona corretamente até selecionar a busca por programa,
-      é a única opção que a busca não funciona (não sei o motivo)
-      quando nenhuma opção é selecionada, a busca por
-      programa funciona corretamente
-      */
-      this.headers.forEach((e) => {
-        e.filterable = false;
-        if (e.text.match(this.busca)) {
-          e.filterable = true;
-        }
-      });
-    },
   },
   computed: {
-    buscarPor() {
-      this.updateHeadersFilter();
-      return `Buscar por ${this.busca}`;
-    },
   },
   beforeMount() {
     this.loadDefesas();
